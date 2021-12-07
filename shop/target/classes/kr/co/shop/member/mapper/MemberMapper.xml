@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybats-3-mapper.dtd">
+  
+<mapper namespace="kr.co.shop.member.mapper.MemberMapper"> 
+	<insert id="member_input_ok" parameterType="kr.co.shop.member.vo.MemberVO">
+		insert into member (userid, name, pwd, email, phone, writeday) values (#{userid}, #{name}, #{pwd}, #{email}, #{phone}, now())
+	</insert>
+	<select id="userid_check" resultType="Integer">
+		select count(*) from member where userid=#{param1}
+	</select>
+	<select id="login_ok" parameterType="kr.co.shop.member.vo.MemberVO" resultType="kr.co.shop.member.vo.MemberVO">
+		select * from member where userid=#{userid} and pwd=#{pwd}
+	</select>
+	<select id="userid_search_ok" resultType="String" parameterType="kr.co.shop.member.vo.MemberVO">
+    	select userid from member where name=#{name} and email=#{email}
+	</select>
+	 
+ 	<select id="pwd_search_ok" resultType="String" parameterType="kr.co.shop.member.vo.MemberVO">
+	  	select pwd from member 
+	    where name=#{name} and email=#{email} and userid=#{userid}
+	</select>
+	<select id="mypage" resultType="kr.co.shop.member.vo.MemberVO">
+		select * from member where userid=#{param1}
+	</select>
+	<update id="mypage_update_ok" parameterType="kr.co.shop.member.vo.MemberVO">
+		update member set email=#{email}, phone=#{phone} where userid=#{userid}
+	</update>
+	<select id="ispwd" resultType="Integer">
+		select count(*) from member where pwd=#{param1} and userid=#{param2}
+	</select>
+	<update id="change_pwd">
+		update member set pwd=#{param1} where userid=#{param2}
+	</update>
+</mapper>

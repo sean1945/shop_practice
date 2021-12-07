@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybats-3-mapper.dtd">
+  
+ <mapper namespace="kr.co.shop.comm.mapper.GongjiMapper">
+ 	<insert id="write_ok" parameterType="kr.co.shop.comm.vo.GongjiVO">
+ 		insert into gongji (title, content) values (#{title}, #{content})
+ 	</insert>
+ 	<select id="list" resultType="kr.co.shop.comm.vo.GongjiVO">
+ 		select * from gongji
+ 	</select>
+ 	<delete id="delete">
+ 		delete from gongji where id=#{param1}
+ 	</delete>
+ 	<update id="readnum">
+ 		update gongji set readnum=readnum+1 where id=#{param1}
+ 	</update>
+ 	<select id="content" resultType="kr.co.shop.comm.vo.GongjiVO">
+ 		select * from gongji where id=#{param1}
+ 	</select>
+ </mapper> 
