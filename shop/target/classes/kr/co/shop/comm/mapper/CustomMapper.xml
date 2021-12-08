@@ -4,5 +4,28 @@
   "http://mybatis.org/dtd/mybats-3-mapper.dtd">
   
  <mapper namespace="kr.co.shop.comm.mapper.CustomMapper">
- 
+ 	<insert id="member_write_ok" parameterType="kr.co.shop.comm.vo.CustomVO">
+ 		insert into custom(userid, title, content, grp, seq, depth) values (#{userid}, #{title}, #{content}, #{grp}, #{seq}, #{depth})
+ 	</insert>
+ 	<insert id="nonmember_write_ok" parameterType="kr.co.shop.comm.vo.CustomVO">
+ 		insert into custom(userid, pwd, title, content, grp, seq, depth) values (#{userid}, #{pwd}, #{title}, #{content}, #{grp}, #{seq}, #{depth})
+ 	</insert>
+ 	<select id="get_grp" resultType="Integer">
+ 		select ifnull(max(grp),0) from custom
+ 	</select>
+ 	<select id="list" resultType="kr.co.shop.comm.vo.CustomVO">
+ 		select * from custom order by grp desc
+ 	</select>
+ 	<update id="readnum">
+ 		update custom set readnum=readnum+1 where id=#{param1}
+ 	</update>
+ 	<select id="content" resultType="kr.co.shop.comm.vo.CustomVO">
+ 		select * from custom where id=#{param1}
+ 	</select>
+ 	<insert id="member_rewrite_ok" parameterType="kr.co.shop.comm.vo.CustomVO">
+ 		insert into custom(userid, title, content, grp, seq, depth) values (#{userid}, #{title}, #{content}, #{grp}, #{seq}, #{depth})
+ 	</insert>
+ 	<insert id="nonmember_rewrite_ok" parameterType="kr.co.shop.comm.vo.CustomVO">
+ 		insert into custom(userid, pwd, title, content, grp, seq, depth) values (#{userid}, #{pwd}, #{title}, #{content}, #{grp}, #{seq}, #{depth})
+ 	</insert>
  </mapper> 

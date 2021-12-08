@@ -180,7 +180,7 @@
 		<div class="sub_div">
 			<ul class="sub">
 				<li> <a href="../gongji/list"> 공지사항 </a> </li>
-				<li> 고객센터 </li>
+				<li> <a href="../custom/list"> 고객센터 </a> </li>
 				<li> 추천상품 </li>
 				<li onclick="hide_sub(4)"> X </li>
 			</ul>
