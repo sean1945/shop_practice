@@ -49,6 +49,7 @@ public class CustomController {
 	@RequestMapping("/content")
 	public String content(HttpServletRequest request, Model model)
 	{
+		model.addAttribute("err", request.getParameter("err"));
 		return cservice.content(request.getParameter("id"), model);
 	}
 	
@@ -65,5 +66,23 @@ public class CustomController {
 	public String rewrite_ok(CustomVO cvo, HttpSession session)
 	{
 		return cservice.rewrite_ok(cvo, session);
+	}
+	
+	@RequestMapping("/update_rewrite")
+	public String update_rewrite(CustomVO cvo, Model model)
+	{
+		return cservice.update_rewrite(cvo, model);
+	}
+	
+	@RequestMapping("/update_rewrite_ok")
+	public String update_rewrite_ok(CustomVO cvo)
+	{
+		return cservice.update_rewrite_ok(cvo);
+	}
+	
+	@RequestMapping("/delete_rewrite")
+	public String delete_rewrite(CustomVO cvo)
+	{
+		return cservice.delete_rewrite(cvo);
 	}
 }

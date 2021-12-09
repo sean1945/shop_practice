@@ -14,4 +14,9 @@ public interface CustomMapper {
 	public CustomVO content(String id);
 	public void member_rewrite_ok(CustomVO cvo);
 	public void nonmember_rewrite_ok(CustomVO cvo);
+	public void up_seq(int seq, int grp);
+	public CustomVO update_rewrite(int id);
+	public void update_rewrite_ok(CustomVO cvo);
+	public int pwd_check(String userid, String pwd, int id);
+	public void delete_rewrite(int id);
 }

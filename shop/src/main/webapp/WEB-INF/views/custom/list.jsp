@@ -9,9 +9,11 @@
 	<style>
 		#section{
 			width: 1000px;
-			height: 500px;
+			min-height: 500px;
+			height: auto;
 			margin: auto;
 			padding-top: 50px;
+			margin-bottom: 100px;
 		}
 		table{
 			width: 700px;
@@ -38,18 +40,32 @@
 			</tr>
 			<c:forEach items="${list}" var="cvo">
 			<tr>
+				<c:if test="${cvo.del == 0}">
 				<td>
-				<c:if test="${cvo.depth > 0}">
-					<c:forEach begin="0" end="${dvo.depth}">
-					&nbsp;&nbsp;
-					</c:forEach>
-				 ↪
-				</c:if>
-				 <a href="readnum?id=${cvo.id}"> ${cvo.title} </a> </td>
-				<td> ${cvo.userid} </td>
-				<td> ${cvo.readnum} </td>
-				<td> ${cvo.writeday} </td>
-			</tr>
+					<c:if test="${cvo.depth > 0}">
+						<c:forEach begin="0" end="${cvo.depth}">
+						&nbsp;&nbsp;
+						</c:forEach>
+					 ↪
+					</c:if>		
+						 <a href="readnum?id=${cvo.id}"> ${cvo.title} </a> 
+					</td>
+					<td> ${cvo.userid} </td>
+					<td> ${cvo.readnum} </td>
+					<td> ${cvo.writeday} </td>
+				</c:if>	
+				<c:if test="${cvo.del != 0}">
+					<td colspan="4">
+					<c:if test="${cvo.depth > 0}">
+						<c:forEach begin="0" end="${cvo.depth}">
+							&nbsp;&nbsp;
+						</c:forEach>
+					 ↪
+					</c:if>
+					삭제된 글입니다...
+					</td>
+				</c:if>	
+			</tr>	
 			</c:forEach>
 			<tr>
 				<td colspan="4" align="center"> <a href="write"> 글 작 성 </a> </td>

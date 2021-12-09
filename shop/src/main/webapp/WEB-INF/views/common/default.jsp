@@ -144,6 +144,7 @@
 		</ul>
 		<div class="sub_div">
 		<ul class="sub">
+			<li> 전체 </li>
 			<li> 쌀,잡곡 </li>
 			<li> 야채 </li>
 			<li> 과일 </li>

@@ -14,7 +14,7 @@
  		select ifnull(max(grp),0) from custom
  	</select>
  	<select id="list" resultType="kr.co.shop.comm.vo.CustomVO">
- 		select * from custom order by grp desc
+ 		select * from custom order by grp desc, seq asc
  	</select>
  	<update id="readnum">
  		update custom set readnum=readnum+1 where id=#{param1}
@@ -28,4 +28,19 @@
  	<insert id="nonmember_rewrite_ok" parameterType="kr.co.shop.comm.vo.CustomVO">
  		insert into custom(userid, pwd, title, content, grp, seq, depth) values (#{userid}, #{pwd}, #{title}, #{content}, #{grp}, #{seq}, #{depth})
  	</insert>
+ 	<update id="up_seq">
+ 		update custom set seq=seq+1 where seq>=#{param1} and grp=#{param2}
+ 	</update>
+ 	<select id="update_rewrite" resultType="kr.co.shop.comm.vo.CustomVO">
+		select * from custom where id=#{param1}
+ 	</select>
+ 	<update id="update_rewrite_ok" parameterType="kr.co.shop.comm.vo.CustomVO">
+ 		update custom set title=#{title}, content=#{content} where id=#{id}
+ 	</update>
+ 	<update id="delete_rewrite">
+ 		update custom set del=del+1 where id=#{param1}
+ 	</update>
+ 	<select id="pwd_check" resultType="Integer">
+ 		select ifnull(count(*),0) from custom where userid=#{param1} and pwd=#{param2} and id=#{param3}
+ 	</select>
  </mapper> 

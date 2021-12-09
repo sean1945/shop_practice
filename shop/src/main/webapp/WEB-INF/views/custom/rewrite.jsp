@@ -43,7 +43,7 @@
 			</tr>
 			<tr>
 				<td> 내 용 </td>
-				<td> <textarea cols="50" rows="6"></textarea> </td>
+				<td> <textarea cols="50" rows="6" name="content"></textarea> </td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"> <input type="submit" value="저 장"> </td>

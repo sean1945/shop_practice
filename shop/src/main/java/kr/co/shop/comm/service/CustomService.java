@@ -14,4 +14,7 @@ public interface CustomService {
 	public String readnum(String id);
 	public String content(String id, Model model);
 	public String rewrite_ok(CustomVO cvo, HttpSession session);
+	public String update_rewrite(CustomVO cvo, Model model);
+	public String update_rewrite_ok(CustomVO cvo);
+	public String delete_rewrite(CustomVO cvo);
 }

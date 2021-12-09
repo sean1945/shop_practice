@@ -2,9 +2,15 @@ package kr.co.shop.comm.vo;
 
 public class CustomVO {
 	
-	private int id, readnum, grp, seq, depth;
+	private int id, readnum, grp, seq, depth, del;
 	private String userid, pwd, title, content, writeday;
 	
+	public int getDel() {
+		return del;
+	}
+	public void setDel(int del) {
+		this.del = del;
+	}
 	public int getId() {
 		return id;
 	}

@@ -66,6 +66,9 @@ public class CustomServiceImpl implements CustomService{
 	@Override
 	public String rewrite_ok(CustomVO cvo, HttpSession session)
 	{
+		// 새로운 레코드 추가 전에 새로운 레코드보다 뒤에 출력될 내용은 seq값을 1증가시킨다.
+		mapper.up_seq(cvo.getSeq(), cvo.getGrp());
+		
 		// 회원인경우, 비회원인 경우 처리가 달라야 한다.
 		if(session.getAttribute("userid") == null)
 		{
@@ -79,5 +82,63 @@ public class CustomServiceImpl implements CustomService{
 		}
 		
 		return "redirect:"+module+"/list";
+	}
+	
+	@Override
+	public String update_rewrite(CustomVO cvo, Model model)
+	{
+		// 비회원이 작성한 글일 경우
+		if(cvo.getPwd() != null)
+		{
+			int chk = mapper.pwd_check(cvo.getUserid(),cvo.getPwd(),cvo.getId());
+			if(chk == 1)
+			{
+				model.addAttribute("cvo", mapper.update_rewrite(cvo.getId()));
+				return module+"/update_rewrite";
+			}
+			else
+			{
+				return "redirect:"+module+"/content?err=1&id="+cvo.getId();
+			}
+		}
+		// 회원이 작성한 글일 경우
+		else
+		{
+			model.addAttribute("cvo", mapper.update_rewrite(cvo.getId()));
+			return module+"/update_rewrite";
+		}		
+		
+	}
+	
+	@Override
+	public String update_rewrite_ok(CustomVO cvo)
+	{
+		mapper.update_rewrite_ok(cvo);
+		return "redirect:"+module+"/content?id="+cvo.getId();
+	}
+	
+	@Override
+	public String delete_rewrite(CustomVO cvo)
+	{
+		// 비회원이 작성한 글일 경우
+		if(cvo.getPwd() != null)
+		{
+			int chk = mapper.pwd_check(cvo.getUserid(),cvo.getPwd(),cvo.getId());
+			if(chk == 1)
+			{
+				mapper.delete_rewrite(cvo.getId());
+				return "redirect:"+module+"/list";
+			}
+			else
+			{
+				return "redirect:"+module+"/content?err=2&id="+cvo.getId();
+			}
+		}
+		// 회원이 작성한 글일 경우
+		else
+		{
+			mapper.delete_rewrite(cvo.getId());
+			return "redirect:"+module+"/list";
+		}		
 	}
 }
