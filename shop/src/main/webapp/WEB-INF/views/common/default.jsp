@@ -30,6 +30,7 @@
 		}
 		#second > ul{
 			border-bottom:1px solid #aaa;
+			position: relative;
 		}
 		#second #shop > li{
 			list-style-type: none;
@@ -60,6 +61,8 @@
 		}
 		.sub_div{ /* 서브메뉴 */
 			position: absolute;
+			top: 50px;
+			left: 0px;
 			width: 900px;
 			background: #aaa;	
 			margin: auto;
@@ -78,11 +81,6 @@
 			font-weight: bold;
 			text-align: center;
 			text-decoration: none;
-		}
-		.sub > li:last-child{
-			float: right;
-			color: black;
-			font-weight: bold;
 		}
 		#bottom{
 			width: 1000px;
@@ -123,11 +121,55 @@
 			<li> <a href="/"> My Shop </a> </li>
 			<li>
 				<ul id="menu">
-					<li onmouseover="view_sub(0)" class="main_menu"> 농산물 </li>
-					<li onmouseover="view_sub(1)" class="main_menu"> 수산물 </li>
-					<li onmouseover="view_sub(2)" class="main_menu"> 축산물 </li>
-					<li onmouseover="view_sub(3)" class="main_menu"> 그 외 </li>
-					<li onmouseover="view_sub(4)" class="main_menu"> 커뮤니티</li>
+					<li onmouseover="view_sub(0)" onmouseout="hide_sub(0)" class="main_menu"> 농산물 
+					<div class="sub_div">
+						<ul class="sub">
+							<li> 전체 </li>
+							<li> 쌀,잡곡 </li>
+							<li> <a href="../pro/list?pcode=p0102">야채</a> </li>
+							<li> 과일 </li>
+							<li> 약초 </li>
+						</ul>
+					</div>
+					</li>
+					<li onmouseover="view_sub(1)" onmouseout="hide_sub(1)" class="main_menu"> 수산물
+					<div class="sub_div">
+						<ul class="sub">
+							<li> 생선 </li>
+							<li> 조개류 </li>
+							<li> 갑각류</li>
+							<li> 해초류 </li>
+						</ul>
+					</div>
+					</li>
+					<li onmouseover="view_sub(2)" onmouseout="hide_sub(2)" class="main_menu"> 축산물 
+					<div class="sub_div">
+						<ul class="sub">
+							<li> 소고기 </li>
+							<li> 돼지고기 </li>
+							<li> 닭,오리고기 </li>
+							<li> 가공품 </li>
+						</ul>
+					</div>
+					</li>
+					<li onmouseover="view_sub(3)" onmouseout="hide_sub(3)" class="main_menu"> 그 외
+					<div class="sub_div">
+						<ul class="sub">
+							<li> 양념 </li>
+							<li> 밀키트 </li>
+							<li> 즉석식품 </li>
+						</ul>
+					</div>
+					</li>
+					<li onmouseover="view_sub(4)" onmouseout="hide_sub(4)" class="main_menu"> 커뮤니티
+					<div class="sub_div">
+						<ul class="sub">
+							<li> <a href="../gongji/list"> 공지사항 </a> </li>
+							<li> <a href="../custom/list"> 고객센터 </a> </li>
+							<li> 추천상품 </li>
+						</ul>
+					</div>	
+					</li>
 				</ul>			
 			</li>
 			<li>
@@ -141,51 +183,7 @@
 				  <a href="../member/mypage">마이페이지</a>
 				</c:if>
 			</li>
-		</ul>
-		<div class="sub_div">
-		<ul class="sub">
-			<li> 전체 </li>
-			<li> 쌀,잡곡 </li>
-			<li> 야채 </li>
-			<li> 과일 </li>
-			<li> 약초 </li>
-			<li onclick="hide_sub(0)"> X </li>
-		</ul>
-		</div>
-		<div class="sub_div">
-			<ul class="sub">
-				<li> 생선 </li>
-				<li> 조개류 </li>
-				<li> 갑각류</li>
-				<li> 해초류 </li>
-				<li onclick="hide_sub(1)"> X </li>
-			</ul>
-		</div>
-		<div class="sub_div">
-			<ul class="sub">
-				<li> 소고기 </li>
-				<li> 돼지고기 </li>
-				<li> 닭,오리고기 </li>
-				<li> 가공품 </li>
-				<li onclick="hide_sub(2)"> X </li>
-			</ul>
-		</div>
-		<div class="sub_div">
-			<ul class="sub">
-				<li> 양념 </li>
-				<li> 밀키트 </li>
-				<li> 즉석식품 </li>
-				<li onclick="hide_sub(3)"> X </li>
-			</ul>
-		</div>
-		<div class="sub_div">
-			<ul class="sub">
-				<li> <a href="../gongji/list"> 공지사항 </a> </li>
-				<li> <a href="../custom/list"> 고객센터 </a> </li>
-				<li> 추천상품 </li>
-				<li onclick="hide_sub(4)"> X </li>
-			</ul>
-		</div>			
+		</ul>		
 	</div>
 	
 	<decorator:body/>
