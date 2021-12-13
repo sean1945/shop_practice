@@ -50,4 +50,18 @@ public class ProductController {
 			out.print("1");
 		}
 	}
+	
+	@RequestMapping("/gumae")
+	public String gumae(HttpServletRequest request, Model model, HttpSession session)
+	{
+		if(session.getAttribute("userid") == null)
+		{
+			return "redirect:/member/login";
+		}
+		else
+		{
+			return pservice.gumae(request, model, session);
+		}
+		
+	}
 }

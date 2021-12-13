@@ -108,10 +108,18 @@
 				}
 			}
 		}
+		function check(my)
+		{
+			my.su.value = document.getElementById("center").innerText;
+			return true;
+		}
 	</script>
 </head>
 <body>
 	<div id="section">
+		<form method="post" action="gumae" onsubmit="return check(this)">
+		<input type="hidden" name="pcode" value="${pvo.pcode}">
+		<input type="hidden" name="su">
 		<table width="960" align="center">
 			<tr>
 				<td id="td_img"><img id="product_img" src="${pvo.imgsrc}"></td>
@@ -126,7 +134,8 @@
 						<div class="num" id="right" onclick="num_chg(1)">+</div>	
 					</div>
 					<div class="pro">
-					<button onclick="cart_add()">장바구니</button> 구매하기
+					<button type="button" onclick="cart_add()">장바구니</button> 
+					<button type="submit">구매하기</button>
 					</div>
 				</td>
 			</tr>
@@ -134,6 +143,7 @@
 				<td colspan="2"> 상품 상세 정보 </td>
 			</tr>
 		</table>
+		</form>
 		<div id="product_detail">
 		</div>
 	</div>

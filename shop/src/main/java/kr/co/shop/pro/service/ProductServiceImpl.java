@@ -1,5 +1,8 @@
 package kr.co.shop.pro.service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -36,5 +39,18 @@ public class ProductServiceImpl implements ProductService{
 	{
 		mapper.cart_add(cvo);
 	}
-
+	
+	@Override
+	public String gumae(HttpServletRequest request, Model model, HttpSession session)
+	{
+		// 구매자정보, 배송정보, 상품정보
+		String pcode = request.getParameter("pcode");
+		String userid = session.getAttribute("userid").toString();
+		model.addAttribute("pvo", mapper.content(pcode));
+		model.addAttribute("mvo", mapper.get_member(userid));
+		model.addAttribute("bvo", mapper.get_baesong(userid));
+		model.addAttribute("su", request.getParameter("su"));
+		
+		return module+"/gumae";
+	}
 }
