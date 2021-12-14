@@ -1,5 +1,7 @@
 package kr.co.shop.pro.service;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import kr.co.shop.pro.mapper.ProductMapper;
+import kr.co.shop.pro.vo.BaesongVO;
 import kr.co.shop.pro.vo.CartVO;
 
 @Service
@@ -52,5 +55,22 @@ public class ProductServiceImpl implements ProductService{
 		model.addAttribute("su", request.getParameter("su"));
 		
 		return module+"/gumae";
+	}
+	
+	@Override
+	public String view_baesong(HttpSession session, Model model)
+	{
+		String userid = session.getAttribute("userid").toString();
+		ArrayList<BaesongVO> list=mapper.view_baesong(userid);
+		model.addAttribute("list", list);
+		return module+"/view_baesong";
+	}
+	
+	@Override
+	public String baesong_add_ok(BaesongVO bvo, HttpSession session)
+	{
+		bvo.setUserid(session.getAttribute("userid").toString());
+		mapper.baesong_add_ok(bvo);
+		return "redirect:/pro/view_baesong";
 	}
 }

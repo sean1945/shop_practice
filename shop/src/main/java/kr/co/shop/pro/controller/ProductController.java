@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.shop.pro.service.ProductService;
+import kr.co.shop.pro.vo.BaesongVO;
 import kr.co.shop.pro.vo.CartVO;
 
 @Controller
@@ -63,5 +64,23 @@ public class ProductController {
 			return pservice.gumae(request, model, session);
 		}
 		
+	}
+	
+	@RequestMapping("view_baesong")
+	public String view_baesong(HttpSession session, Model model)
+	{
+		return pservice.view_baesong(session, model);
+	}
+	
+	@RequestMapping("baesong_add")
+	public String baesong_add()
+	{
+		return module+"/baesong_add";
+	}
+	
+	@RequestMapping("baesong_add_ok")
+	public String baesong_add_ok(BaesongVO bvo, HttpSession session)
+	{
+		return pservice.baesong_add_ok(bvo, session);
 	}
 }

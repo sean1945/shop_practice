@@ -15,4 +15,6 @@ public interface ProductMapper {
 	public MemberVO get_member(String userid);
 	public BaesongVO get_baesong(String userid);
 	// public ProductVO get_product(String pcode); procontent메소드와 동일
+	public ArrayList<BaesongVO> view_baesong(String userid);
+	public void baesong_add_ok(BaesongVO bvo);
 }

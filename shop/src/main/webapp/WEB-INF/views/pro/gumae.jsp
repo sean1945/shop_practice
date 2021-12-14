@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,12 +26,25 @@
 		td{
 			padding: 10px 20px;
 		}
+		.td_head{
+			font-size: 14px;
+			font-weight: bold;
+		}
 		h3{
 			width: 700px;
 			text-align: left;
 			border-bottom: 1px solid #ccc;
 		}
+		.h3_span{
+			font-size: 14px;
+		}
 	</style>
+	<script>
+		function view_baesong()
+		{
+			window.open("view_baesong","","width=400,height=500,scrollbar=true")
+		}
+	</script>
 </head>
 <body>
 	<div id="section">
@@ -49,7 +64,16 @@
 			</tr>
 		</table>
 		<table>
-			<caption><h3>받는사람 정보</h3></caption>
+			<caption>
+				<h3>받는사람 정보
+				<c:if test="${empty bvo}">
+					<span class="h3_span" onclick="view_baesong()">배송지 추가</span>
+				</c:if>
+				<c:if test="${!empty bvo}">
+					<span class="h3_span" onclick="view_baesong()">배송지 변경</span>
+				</c:if>
+				</h3>
+			</caption>
 			<tr>
 				<td class="td_head">이름</td>
 				<td>${bvo.name}</td>
@@ -64,7 +88,20 @@
 			</tr>
 			<tr>
 				<td class="td_head">배송요청사항</td>
-				<td>${bvo.req}</td>
+				<td>
+					<c:if test="${bvo.req==0}">
+						경비실
+					</c:if>
+					<c:if test="${bvo.req==1}">
+						부재시 문앞
+					</c:if>
+					<c:if test="${bvo.req==2}">
+						편의점
+					</c:if>
+					<c:if test="${bvo.req==3}">
+						무조건 직접
+					</c:if>
+				</td>
 			</tr>
 		</table>
 		<table>
