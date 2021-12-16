@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import kr.co.shop.pro.mapper.ProductMapper;
 import kr.co.shop.pro.vo.BaesongVO;
 import kr.co.shop.pro.vo.CartVO;
+import kr.co.shop.pro.vo.GumaeVO;
 
 @Service
 @Qualifier("ps")
@@ -72,5 +73,29 @@ public class ProductServiceImpl implements ProductService{
 		bvo.setUserid(session.getAttribute("userid").toString());
 		mapper.baesong_add_ok(bvo);
 		return "redirect:/pro/view_baesong";
+	}
+	
+	@Override
+	public void phone_chg(HttpServletRequest request, HttpSession session)
+	{
+		String phone = request.getParameter("phone");
+		String userid = session.getAttribute("userid").toString();
+		mapper.phone_chg(phone, userid);
+	}
+	
+	@Override
+	public void req_chg(HttpServletRequest request)
+	{
+		String id = request.getParameter("id");
+		String req = request.getParameter("req");
+		mapper.req_chg(req, id);
+	}
+	
+	@Override
+	public String gumae_ok(GumaeVO gvo, HttpSession session)
+	{
+		gvo.setUserid(session.getAttribute("userid").toString());
+		mapper.gumae_ok(gvo);
+		return "redirect:"+module+"/gumae_view";
 	}
 }

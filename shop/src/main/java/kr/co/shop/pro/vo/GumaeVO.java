@@ -1,9 +1,45 @@
 package kr.co.shop.pro.vo;
 
 public class GumaeVO {
-	private int id, su, sudan, baeid;
-	private String userid, pcode, writeday;
+	private int id, su, sudan, baeid, price, bank, card, halbu, com;
+	private String userid, pcode, writeday, phone;
 	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getBank() {
+		return bank;
+	}
+	public void setBank(int bank) {
+		this.bank = bank;
+	}
+	public int getCard() {
+		return card;
+	}
+	public void setCard(int card) {
+		this.card = card;
+	}
+	public int getHalbu() {
+		return halbu;
+	}
+	public void setHalbu(int halbu) {
+		this.halbu = halbu;
+	}
+	public int getCom() {
+		return com;
+	}
+	public void setCom(int com) {
+		this.com = com;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public int getId() {
 		return id;
 	}

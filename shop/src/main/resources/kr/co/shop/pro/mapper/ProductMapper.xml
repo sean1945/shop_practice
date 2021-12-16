@@ -25,4 +25,14 @@
  <insert id="baesong_add_ok" parameterType="kr.co.shop.pro.vo.BaesongVO">
  	insert into baesong(zip,juso1,juso2,userid,gibon,name,phone,req) values (#{zip},#{juso1},#{juso2},#{userid},#{gibon},#{name},#{phone},#{req})
  </insert>
+ <update id="phone_chg">
+ 	update member set phone=#{param1} where userid=#{param2}
+ </update>
+ <update id="req_chg">
+ 	update baesong set req=#{param1} where id=#{param2}
+ </update>
+ <insert id="gumae_ok" parameterType="kr.co.shop.pro.vo.GumaeVO">
+ 	insert into gumae (userid, pcode, su, sudan, baeid, price, bank, card, halbu, com, phone)
+ 	values (#{userid}, #{pcode}, #{su}, #{sudan}, #{baeid}, #{price}, #{bank}, #{card}, #{halbu}, #{com}, #{phone})
+ </insert>
 </mapper>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.co.shop.pro.service.ProductService;
 import kr.co.shop.pro.vo.BaesongVO;
 import kr.co.shop.pro.vo.CartVO;
+import kr.co.shop.pro.vo.GumaeVO;
 
 @Controller
 @RequestMapping("/pro")
@@ -82,5 +83,25 @@ public class ProductController {
 	public String baesong_add_ok(BaesongVO bvo, HttpSession session)
 	{
 		return pservice.baesong_add_ok(bvo, session);
+	}
+	
+	@RequestMapping("/phone_chg")
+	public void phone_chg(HttpServletRequest request, HttpSession session, PrintWriter out)
+	{
+		pservice.phone_chg(request, session);
+		out.print("0");
+	}
+	
+	@RequestMapping("/req_chg")
+	public void req_chg(HttpServletRequest request, PrintWriter out)
+	{
+		pservice.req_chg(request);
+		out.print("0");
+	}
+	
+	@RequestMapping("/gumae_ok")
+	public String gumae_ok(GumaeVO gvo,HttpSession session)
+	{
+		return pservice.gumae_ok(gvo, session);
 	}
 }
